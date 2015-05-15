@@ -1,6 +1,6 @@
 # Protagonist
 
-A [Twine](http://twinery.org/) story format with power!
+A [Twine](http://twinery.org/) story format with power! (note from @hoverbird: this fork may be full of hacks for the needs a specific project; please look to @massivedanger's original for use in your project)
 
 ## Features
 
