@@ -15,46 +15,52 @@ class Passage {
   }
 
   render() {
-    var data = _.defaults({
-      passage: this,
-      story: this.story
-    }, this.story.helpers);
+    return marked(this.parse());
+  }
 
-    var template = _.template(_.unescape(this.source));
-    var parsed = this._processLinks(template(data));
+  parse(source) {
+    if (!this._parsed) {
+      const data = _.defaults({
+        passage: this,
+        story: this.story
+      }, this.story.helpers);
 
-    return marked(parsed);
+      const template = _.template(_.unescape(source || this.source));
+
+      this._parsed = this._processLinks(template(data));
+    }
+
+    return this._parsed;
   }
 
   _processLinks(text) {
-		text = text.replace(/\[\[(.*?)\]\]/g, function (match, target) {
-			var display = target;
+    text = text.replace(/\[\[(.*?)\]\]/g, (match, target) => {
+      var display = target;
 
       // Check for [[Text|Destination]]
-			var barIndex = target.indexOf('|');
+      var barIndex = target.indexOf('|');
 
-			if (barIndex != -1) {
-				display = target.substr(0, barIndex);
-				target = target.substr(barIndex + 1);
-			}
-			else {
+      if (barIndex != -1) {
+        display = target.substr(0, barIndex);
+        target = target.substr(barIndex + 1);
+      }
+      else {
         // Check for [[Text->Destination]]
-				var rightArrIndex = target.indexOf('->');
+        var rightArrIndex = target.indexOf('->');
 
-				if (rightArrIndex != -1)
-				{
-					display = target.substr(0, rightArrIndex);
-					target = target.substr(rightArrIndex + 2);
-				}
-			};
+        if (rightArrIndex != -1) {
+          display = target.substr(0, rightArrIndex);
+          target = target.substr(rightArrIndex + 2);
+        }
+      };
 
-			if (/^\w+:\/\/\/?\w/i.test(target)) {
-				return `<a href="${target}" class="external-link">${display}</a>`;
+      if (/^\w+:\/\/\/?\w/i.test(target)) {
+        return `<a href="${target}" class="external-link">${display}</a>`;
       }
-			else {
-				return `<a href="javascript:void(0)" data-passage="${target}" class="passage-link">${display}</a>`;
+      else {
+        return `<a href="javascript:void(0)" data-passage="${target}" class="passage-link">${display}</a>`;
       }
-		});
+    });
 
     return text;
   }
