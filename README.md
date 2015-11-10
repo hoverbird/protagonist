@@ -19,9 +19,9 @@ A [Twine](http://twinery.org/) story format with power! (note from @hoverbird: t
 3. In the dialog that opens, click on the tab Add a New Format
 4. Paste this URL into the text box and click the +Add button:
 
-   ```
-   https://cdn.rawgit.com/hoverbird/protagonist/v1.0.0-beta.2/dist/format.js
-   ```
+  ```
+  https://rawgit.com/hoverbird/protagonist/master/dist/format.js
+  ```
 
 ## Help
 
