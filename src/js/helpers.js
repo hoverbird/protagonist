@@ -51,7 +51,7 @@ class Helpers {
     return this.story.state;
   }
 
-  link(text, passage) {
+  link(text, passage, options = {}) {
     return this.buildLink({
       text: text,
       classes: ['passage-link'],
