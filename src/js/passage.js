@@ -12,6 +12,7 @@ class Passage {
     this.name = this.element.attr('name');
     this.tags = this.element.attr('tags').split(' ');
     this.source = _.unescape(this.element.html());
+    this.mustacheStyleTemplateMatcher = /\{\{(.+?)\}\}/g
   }
 
   render() {
@@ -24,9 +25,11 @@ class Passage {
         passage: this,
         story: this.story
       }, this.story.helpers);
+      console.log("gubna source", _.unescape(source));
 
-      const template = _.template(_.unescape(source || this.source));
-
+      const template = _.template(_.unescape(source || this.source), {
+        interpolate: this.mustacheStyleTemplateMatcher
+      });
       this._parsed = this._processLinks(template(data));
     }
 
