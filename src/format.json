@@ -1,10 +1,10 @@
 {
-	"name": "Protagonist",
-	"version": "1.1.0",
+	"name": "Protagonist + Twisty",
+	"version": "0.1",
 	"description": "A format for power users",
 	"image": "icon.svg",
-	"author": "Massive Danger",
-	"url": "https://github.com/massivedanger/protagonist",
+	"author": "Massive Danger + Hoverbird",
+	"url": "https://github.com/hoverbird/protagonist",
 	"license": "ISC",
 	"proofing": false
 }
