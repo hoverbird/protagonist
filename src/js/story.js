@@ -6,8 +6,6 @@ import _ from 'lodash';
 import Passage from './passage';
 import Helpers from './helpers';
 
-console.log("you're not crazy")
-
 class Story {
   constructor(element) {
     this.element = element;

@@ -25,7 +25,6 @@ class Passage {
         passage: this,
         story: this.story
       }, this.story.helpers);
-      console.log("gubna source", _.unescape(source));
 
       const template = _.template(_.unescape(source || this.source), {
         interpolate: this.mustacheStyleTemplateMatcher
