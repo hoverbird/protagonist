@@ -1,4 +1,4 @@
-# Protagonist
+# Protagonist + Twisty
 
 A [Twine](http://twinery.org/) story format with power! (note from @hoverbird: this fork may be full of hacks for the needs a specific project; please look to @massivedanger's original for use in your project)
 
@@ -49,13 +49,13 @@ All passages support embedded JavaScript logic. That means you can do things lik
 this in your passage:
 
 ```
-<% number = 1 %>
+{{ number = 1 }}
 
 Hello! Your lucky number is <%= number %>
 ```
 
-Anything within `<%` and `%>` is executed, but not shown in the browser. Anything within
-`<%=` and `%>` is executed and then the result is shown to the user. To learn more
+Anything within `{{` and `}}` is executed, but not shown in the browser. Anything within
+`{{=` and `}}` is executed and then the result is shown to the user. To learn more
 about how this works under the hood, check out [lodash's template function](https://lodash.com/docs#template).
 
 ### Checkpoints/saving
@@ -65,7 +65,7 @@ buttons of the browser and to change the window's title upon reaching certain pa
 just add the "checkpoint" tag to any passage. You can also use it as a helper like this:
 
 ```
-<% story.checkpoint('Name of the checkpoint goes here') %>
+{{ story.checkpoint('Name of the checkpoint goes here') }}
 ```
 
 If you'd like to save all the progress, you'll need to call `story.save()` in your
@@ -160,9 +160,9 @@ Show a link that, when clicked, navigates the player to the chosen passage.
 - `passage`: either the name of the passage or its Twine ID number
 
 ```
-<%= link('Go outside', 'Outside') %>
+{{= link('Go outside', 'Outside') }}
 
-<%= link('Go to the passage with ID #2', 2) %>
+{{= link('Go to the passage with ID #2', 2) }}
 ```
 
 #### showLink(text:string, passage:string|number)
@@ -173,9 +173,9 @@ Show a link that, when clicked, inserts a passage's content inline.
 - `passage`: either the name of the passage or its Twine ID number
 
 ```
-<%= showLink('Look outside', 'Outside') %>
+{{= showLink('Look outside', 'Outside') }}
 
-<%= showLink('Look at passage ID #2', 2) %>
+{{= showLink('Look at passage ID #2', 2) }}
 ```
 
 #### show(passage:string|number)
@@ -185,9 +185,9 @@ Show a passage's rendered content inline.
 - `passage`: either the name of the passage or its Twine ID number
 
 ```
-<%= show('Outside') %>
+{{= show('Outside') }}
 
-<%= show(2) %>
+{{= show(2) }}
 ```
 
 #### goTo(passage:string|number)
@@ -197,9 +197,9 @@ Navigate the player to a passage.
 - `passage`: either the name of the passage or its Twine ID number
 
 ```
-<%= goTo('Outside') %>
+{{= goTo('Outside') }}
 
-<%= goTo(2) %>
+{{= goTo(2) }}
 ```
 
 #### random(choices:array)
@@ -210,9 +210,9 @@ of arguments can be supplied and a random item will be chosen from them.
 - `choices`: array of items to choose from
 
 ```
-<%= random(['thing 1', 'thing 2', 'thing 3']) %>
+{{= random(['thing 1', 'thing 2', 'thing 3']) }}
 
-<%= random('thing 1', 'thing 2', 'thing 3') %>
+{{= random('thing 1', 'thing 2', 'thing 3') }}
 ```
 
 #### randomNumber(min:number, max:number, floating:boolean)
@@ -225,9 +225,9 @@ floating point number.
 - `floating`: whether or not the chosen number should be floating point
 
 ```
-<%= randomNumber(0, 100) %>
+{{= randomNumber(0, 100) }}
 
-<%= randomNumber(0, 1, true) %>
+{{= randomNumber(0, 1, true) }}
 ```
 
 #### toggleHeader()
@@ -249,7 +249,7 @@ Show a link that, when clicked, saves the player's progress.
 - `text`: what will be shown to the player as clickable text
 
 ```
-<%= saveLink('[save]') %>
+{{= saveLink('[save]') }}
 ```
 
 #### restoreLink(text:string)
@@ -259,7 +259,7 @@ Show a link that, when clicked, restores the player's progress.
 - `text`: what will be shown to the player as clickable text
 
 ```
-<%= restoreLink('[restore]') %>
+{{= restoreLink('[restore]') }}
 ```
 
 #### backLink(text:string)
@@ -269,7 +269,7 @@ Show a link that, when clicked, takes the player back a passage.
 - `text`: what will be shown to the player as clickable text
 
 ```
-<%= backLink('GO BACK!') %>
+{{= backLink('GO BACK!') }}
 ```
 
 #### forwardLink(text:string)
@@ -280,7 +280,7 @@ gone back from it.
 - `text`: what will be shown to the player as clickable text
 
 ```
-<%= forwardLink('Go back to the future. Or forward. One of those.') %>
+{{= forwardLink('Go back to the future. Or forward. One of those.') }}
 ```
 
 ### Third-party libraries
