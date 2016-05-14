@@ -12,7 +12,6 @@ class Passage {
     this.name = this.element.attr('name');
     this.tags = this.element.attr('tags').split(' ');
     this.source = _.unescape(this.element.html());
-    this.mustacheStyleTemplateMatcher = /\{\{(.+?)\}\}/g
   }
 
   render() {
@@ -26,9 +25,15 @@ class Passage {
         story: this.story
       }, this.story.helpers);
 
-      const template = _.template(_.unescape(source || this.source), {
-        interpolate: this.mustacheStyleTemplateMatcher
-      });
+
+      const template = _.template(
+        _.unescape(source || this.source),
+        {
+          evaluate: /{\%([\s\S]+?)\%}/g,
+          interpolate: /{{([\s\S]+?)}}/g
+        }
+      );
+
       this._parsed = this._processLinks(template(data));
     }
 
