@@ -29,8 +29,8 @@ class Passage {
       const template = _.template(
         _.unescape(source || this.source),
         {
-          evaluate: /{\%([\s\S]+?)\%}/g,
-          interpolate: /{{([\s\S]+?)}}/g
+          evaluate: /{{([\s\S]+?)}}/g,
+          interpolate: /{{=([\s\S]+?)}}/g
         }
       );
 
