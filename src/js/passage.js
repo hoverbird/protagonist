@@ -25,14 +25,11 @@ class Passage {
         story: this.story
       }, this.story.helpers);
 
-
-      const template = _.template(
-        _.unescape(source || this.source),
-        {
-          evaluate: /{{([\s\S]+?)}}/g,
-          interpolate: /{{=([\s\S]+?)}}/g
-        }
-      );
+      const template = _.template(_.unescape(source || this.source), {
+        evaluate:    /\{\{[^=\{]([\s\S]+?)[^\}]\}\}/g,  // {{ title }}
+        interpolate: /\{\{=([\s\S]+?)\}\}/g,            // {{= console.log("blah") }}
+        escape:      /\{\{\{([\s\S]+?)\}\}\}/g         // {{{ title }}}
+       });
 
       this._parsed = this._processLinks(template(data));
     }

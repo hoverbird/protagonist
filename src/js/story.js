@@ -296,7 +296,7 @@ class Story {
       this.goForward();
     });
 
-    $('body').on('click', 'a[href^=#passage]', (e) => {
+    $('body').on('click', 'a[href^="#passage"]', (e) => {
       const url = e.target.href;
       const passageID = url.split('#passage:')[1];
       try {
